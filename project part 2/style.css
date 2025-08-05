@@ -1,0 +1,51 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #ef5350;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header input {
+  padding: 10px;
+  width: 250px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+#pokedex {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.pokemon {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 15px;
+}
+
+.pokemon img {
+  width: 120px;
+  height: 120px;
+}
+
+.pokemon h3 {
+  margin: 10px 0 5px;
+  text-transform: capitalize;
+}
+
+.pokemon p {
+  margin: 5px 0;
+  color: #555;
+}

@@ -1,0 +1,40 @@
+const pokedex = document.getElementById("pokedex");
+const search = document.getElementById("search");
+let allPokemon = [];
+
+async function fetchPokemon() {
+  const pokemonCount = 150; // Fetch first 150 Pokémon
+  const promises = [];
+
+  for (let i = 1; i <= pokemonCount; i++) {
+    const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+    promises.push(fetch(url).then(res => res.json()));
+  }
+
+  const results = await Promise.all(promises);
+  allPokemon = results;
+  displayPokemon(results);
+}
+
+function displayPokemon(pokemonArray) {
+  const html = pokemonArray.map(pokemon => {
+    const types = pokemon.types.map(t => t.type.name).join(", ");
+    return `
+      <div class="pokemon">
+        <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+        <h3>${pokemon.name}</h3>
+        <p>ID: ${pokemon.id}</p>
+        <p>Type: ${types}</p>
+      </div>
+    `;
+  }).join("");
+  pokedex.innerHTML = html;
+}
+
+search.addEventListener("input", () => {
+  const query = search.value.toLowerCase();
+  const filtered = allPokemon.filter(p => p.name.toLowerCase().includes(query));
+  displayPokemon(filtered);
+});
+
+fetchPokemon();
